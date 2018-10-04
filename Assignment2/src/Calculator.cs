@@ -4,21 +4,21 @@ using System.Linq;
 
 namespace Calculator
 {
-    public class Calculator
-    {
-        public static void Main(string[] args)
-        {
-	        string userInput;
+	public class Calculator
+	{
+		public static void Main(string[] args)
+		{
+			string userInput;
 
-	        if (args.Length > 1)
-	        {
+			if (args.Length > 1)
+			{
 				Console.WriteLine($"Passed in expression: {String.Join(" ", args.Skip(1))}");
-		        userInput = String.Join(" ", args.Skip(1));
-	        }
-	        else
-	        {
-		        Console.WriteLine($"Welcome to Calculator!{Environment.NewLine}Enter a mathematical expression:{Environment.NewLine}Ex: 2 x 3");
-		        userInput = Console.ReadLine();
+				userInput = String.Join(" ", args.Skip(1));
+			}
+			else
+			{
+				Console.WriteLine($"Welcome to Calculator!{Environment.NewLine}Enter a mathematical expression:{Environment.NewLine}Ex: 2 x 3");
+				userInput = Console.ReadLine();
 			}
 
 			while (!userInput.Trim().Equals("n"))
@@ -45,14 +45,14 @@ namespace Calculator
 
 				Console.WriteLine("Type 'n' to end program, type new expression to continue.");
 				userInput = Console.ReadLine();
-	        }
+			}
 
-        }
+		}
 
-        static decimal SolveExpression(decimal leftOperand, decimal rightOperand, string expressionOperator)
-        {
-	        switch (expressionOperator)
-	        {
+		static decimal SolveExpression(decimal leftOperand, decimal rightOperand, string expressionOperator)
+		{
+			switch (expressionOperator)
+			{
 				case "+": return leftOperand + rightOperand;
 				case "-": return leftOperand - rightOperand;
 				case "*": return leftOperand * rightOperand;
@@ -61,25 +61,25 @@ namespace Calculator
 				case "**": return (decimal) Math.Pow((double) leftOperand, (double) rightOperand);
 				default: throw new ArgumentException("Passed in operator is not a valid operator.");
 			}
-        }
+		}
 
-        static bool TryParseOperator(string stringOperator, out string expressionOperator)
-        {
-	        if (new[] {"+", "-", "*", "/", "x", "**"}.Contains(stringOperator))
-	        {
-		        expressionOperator = stringOperator.Trim();
-		        return true;
-	        }
+		static bool TryParseOperator(string stringOperator, out string expressionOperator)
+		{
+			if (new[] {"+", "-", "*", "/", "x", "**"}.Contains(stringOperator))
+			{
+				expressionOperator = stringOperator.Trim();
+				return true;
+			}
 
-	        expressionOperator = "";
-	        return false;
-        }
+			expressionOperator = "";
+			return false;
+		}
 
-	    static bool InvalidExpression(string consoleOutput)
-	    {
+		static bool InvalidExpression(string consoleOutput)
+		{
 			Console.WriteLine(consoleOutput);
-		    return false;
-	    }
+			return false;
+		}
 
-    }
+	}
 }
