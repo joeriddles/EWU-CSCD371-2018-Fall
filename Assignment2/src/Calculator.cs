@@ -8,7 +8,7 @@ namespace Calculator
 	{
 		public static void Main(string[] args)
 		{
-			string userInput;
+			string userInput = "";
 
 			if (args.Length > 1)
 			{
@@ -21,7 +21,7 @@ namespace Calculator
 				userInput = Console.ReadLine();
 			}
 
-			while (!userInput.Trim().Equals("x"))
+			while (!userInput.Trim().Equals("n"))
 			{
 				bool validExpression = true;
 				var userInputArray = userInput.Split(" ");
@@ -55,7 +55,7 @@ namespace Calculator
 						Console.WriteLine($"Answer: {SolveExpression(leftOperand, rightOperand, expressionOperator)}");
 				}
 
-				Console.WriteLine($"{Environment.NewLine}Type 'x' to end program, type new expression to continue.{Environment.NewLine}");
+				Console.WriteLine($"{Environment.NewLine}Type 'n' to end program, type new expression to continue.{Environment.NewLine}");
 				userInput = Console.ReadLine();
 			}
 

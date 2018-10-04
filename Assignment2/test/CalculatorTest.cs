@@ -43,6 +43,12 @@ namespace CalculatorTest
 		}
 
 		[TestMethod]
+		public void TestCalculatorDivideByZero()
+		{
+			ConsoleAssert.Expect(GenerateConsoleOutputFail("1 / 0", "Cannot divide by zero."), Calculator.Calculator.Main);
+		}
+
+		[TestMethod]
 		public void TestCalculatorInvalidInputAll()
 		{
 			ConsoleAssert.Expect(GenerateConsoleOutputFail("fail", "Expression is not properly formatted."), Calculator.Calculator.Main);
@@ -84,10 +90,11 @@ namespace CalculatorTest
 		}
 
 		private readonly string initialConsoleOutput = $@">>Welcome to Calculator!
->>Enter a mathematical expression:
->>Ex: 2 x 3";
+>>Enter a mathematical expression or type 'help' for available operations.";
 
-		private readonly string endConsoleOutput = $@">>Type 'n' to end program, type new expression to continue.
+		private readonly string endConsoleOutput = $@">>
+Type 'n' to end program, type new expression to continue.
+
 <<n";
 	}
 }
