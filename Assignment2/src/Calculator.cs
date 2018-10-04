@@ -17,17 +17,22 @@ namespace Calculator
 			}
 			else
 			{
-				Console.WriteLine($"Welcome to Calculator!{Environment.NewLine}Enter a mathematical expression:{Environment.NewLine}Ex: 2 x 3");
+				Console.WriteLine($"Welcome to Calculator!{Environment.NewLine}Enter a mathematical expression or type 'help' for available operations.");
 				userInput = Console.ReadLine();
 			}
 
-			while (!userInput.Trim().Equals("n"))
+			while (!userInput.Trim().Equals("x"))
 			{
 				bool validExpression = true;
 				var userInputArray = userInput.Split(" ");
 
 				if (userInputArray.Length != 3)
-					validExpression = InvalidExpression("Expression is not properly formatted.");
+				{
+					if (userInputArray[0] == "h" || userInputArray[0] == "help")
+						PrintHelp();
+					else
+						validExpression = InvalidExpression("Expression is not properly formatted.");
+				}
 				else
 				{
 					if (!Decimal.TryParse(userInputArray[0], out decimal leftOperand))
@@ -40,10 +45,17 @@ namespace Calculator
 						validExpression = InvalidExpression("Passed in operator is not a valid operator.");
 
 					if (validExpression)
+					{
+						validExpression = !(expressionOperator == "/" && rightOperand == 0);
+						if (!validExpression)
+							Console.WriteLine("Cannot divide by zero.");
+					}
+
+					if (validExpression)
 						Console.WriteLine($"Answer: {SolveExpression(leftOperand, rightOperand, expressionOperator)}");
 				}
 
-				Console.WriteLine("Type 'n' to end program, type new expression to continue.");
+				Console.WriteLine($"{Environment.NewLine}Type 'x' to end program, type new expression to continue.{Environment.NewLine}");
 				userInput = Console.ReadLine();
 			}
 
@@ -81,5 +93,30 @@ namespace Calculator
 			return false;
 		}
 
+		static void PrintHelp()
+		{
+			Console.WriteLine($@"Available expressions:
+
+Addition:
+	Operator: '+'
+	Examples: 2 + 2, 1.5 + 2.75
+
+Subtraction:
+	Operator: '-'
+	Examples: 2 - 2, 3.45 - -16
+
+Multiplication:
+	Operators: '*' or 'x'
+	Examples: 2 * 2, 2 x 2, 10.1 * 50.1
+
+Division:
+	Operator: '/'
+	Examples: 2 / 2, 4.5 / 2
+
+Power:
+	Operator: '**'
+	Examples: 2 ** 2, 9.5 ** 3
+");
+		}
 	}
 }
