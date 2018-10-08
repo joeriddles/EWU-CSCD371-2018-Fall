@@ -8,13 +8,17 @@ namespace StringTest
 		[TestMethod]
 		public void TestStringLength()
 		{
-			Assert.AreEqual(testStringLength, testString.Length);
+			Assert.AreEqual(12, testString.Length);
 		}
 
 		[TestMethod]
 		public void TestStringSplit()
 		{
+			var testStringSplit = testString.Split(" ");
+
 			Assert.AreEqual(2, testString.Split(" ").Length);
+			Assert.AreEqual("Hello", testStringSplit[0]);
+			Assert.AreEqual("World!", testStringSplit[1]);
 		}
 
 		[TestMethod]
@@ -31,12 +35,11 @@ namespace StringTest
 		[TestMethod]
 		public void TestStringJoin()
 		{
-			Assert.AreEqual(stringArrayJoined, string.Join("!", stringArray));
+			string[] stringArray = new[] { "Hello", "World!" };
+
+			Assert.AreEqual("Hello World!", string.Join(" ", stringArray));
 		}
 
 		private readonly string testString = "Hello World!";
-		private readonly string[] stringArray = new[] {"stringArray[0]", "stringArray[1]"};
-		private readonly string stringArrayJoined = "stringArray[0]!stringArray[1]";
-		private readonly int testStringLength = 12;
 	}
 }
