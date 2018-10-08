@@ -12,8 +12,8 @@ namespace Calculator
 
 			if (args.Length > 1)
 			{
-				Console.WriteLine($"Passed in expression: {String.Join(" ", args.Skip(1))}");
-				userInput = String.Join(" ", args.Skip(1));
+				Console.WriteLine($"Passed in expression: {string.Join(" ", args)}");
+				userInput = string.Join(" ", args);
 			}
 			else
 			{
@@ -31,18 +31,30 @@ namespace Calculator
 					if (userInputArray[0] == "h" || userInputArray[0] == "help")
 						PrintHelp();
 					else
-						validExpression = InvalidExpression("Expression is not properly formatted.");
+					{
+						Console.WriteLine("Expression is not properly formatted.");
+						validExpression = false;
+					}
 				}
 				else
 				{
 					if (!Decimal.TryParse(userInputArray[0], out decimal leftOperand))
-						validExpression = InvalidExpression("Left operand is not a valid number.");
+					{
+						Console.WriteLine("Left operand is not a valid number.");
+						validExpression = false;
+					}
 
 					if (!Decimal.TryParse(userInputArray[2], out decimal rightOperand))
-						validExpression = InvalidExpression("Right operand is not a valid number.");
+					{
+						Console.WriteLine("Right operand is not a valid number.");
+						validExpression = false;
+					}
 
 					if (!TryParseOperator(userInputArray[1], out string expressionOperator))
-						validExpression = InvalidExpression("Passed in operator is not a valid operator.");
+					{
+						Console.WriteLine("Passed in operator is not a valid operator.");
+						validExpression = false;
+					}
 
 					if (validExpression)
 					{
@@ -61,7 +73,7 @@ namespace Calculator
 
 		}
 
-		static decimal SolveExpression(decimal leftOperand, decimal rightOperand, string expressionOperator)
+		private static decimal SolveExpression(decimal leftOperand, decimal rightOperand, string expressionOperator)
 		{
 			switch (expressionOperator)
 			{
@@ -75,7 +87,7 @@ namespace Calculator
 			}
 		}
 
-		static bool TryParseOperator(string stringOperator, out string expressionOperator)
+		private static bool TryParseOperator(string stringOperator, out string expressionOperator)
 		{
 			if (new[] {"+", "-", "*", "/", "x", "**"}.Contains(stringOperator))
 			{
@@ -87,13 +99,7 @@ namespace Calculator
 			return false;
 		}
 
-		static bool InvalidExpression(string consoleOutput)
-		{
-			Console.WriteLine(consoleOutput);
-			return false;
-		}
-
-		static void PrintHelp()
+		private static void PrintHelp()
 		{
 			Console.WriteLine($@"Available expressions:
 
