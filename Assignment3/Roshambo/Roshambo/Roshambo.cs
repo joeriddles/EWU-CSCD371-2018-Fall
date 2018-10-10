@@ -87,33 +87,33 @@ namespace Roshambo
 					switch (playerMove)
 					{
 						case RoshamboMove.paper:
-							computerHealth -= paperDamage;
-							return (-1, paperDamage);
+							computerHealth -= (int)RoshamboMove.paper;
+							return (-1, (int)RoshamboMove.paper);
 						case RoshamboMove.scissors:
-							playerHealth -= rockDamage;
-							return (1, rockDamage);
+							playerHealth -= (int)RoshamboMove.rock;
+							return (1, (int)RoshamboMove.rock);
 						default: return (0, 0);
 					}
 				case RoshamboMove.paper:
 					switch (playerMove)
 					{
 						case RoshamboMove.rock:
-							playerHealth -= paperDamage;
-							return (1, paperDamage);
+							playerHealth -= (int)RoshamboMove.paper;
+							return (1, (int)RoshamboMove.paper);
 						case RoshamboMove.scissors:
-							computerHealth -= scissorsDamage;
-							return (-1, scissorsDamage);
+							computerHealth -= (int)RoshamboMove.scissors;
+							return (-1, (int)RoshamboMove.scissors);
 						default: return (0, 0);
 					}
 				case RoshamboMove.scissors:
 					switch (playerMove)
 					{
 						case RoshamboMove.rock:
-							computerHealth -= rockDamage;
-							return (-1, rockDamage);
+							computerHealth -= (int)RoshamboMove.rock;
+							return (-1, (int)RoshamboMove.rock);
 						case RoshamboMove.paper:
-							playerHealth -= scissorsDamage;
-							return (1, scissorsDamage);
+							playerHealth -= (int)RoshamboMove.scissors;
+							return (1, (int)RoshamboMove.scissors);
 						default: return (0, 0);
 					}
 				default: throw new ArgumentException();
@@ -122,12 +122,11 @@ namespace Roshambo
 
 		public enum RoshamboMove
 		{
-			rock,
-			paper,
-			scissors
+			rock = 20,
+			paper = 15,
+			scissors = 10
 		};
 
 		private static int playerHealth, computerHealth;
-		public const int rockDamage = 20, scissorsDamage = 15, paperDamage = 10;
 	}
 }

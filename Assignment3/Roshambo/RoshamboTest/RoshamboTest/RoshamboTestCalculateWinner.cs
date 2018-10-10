@@ -14,19 +14,19 @@ namespace RoshamboTest
 		[TestMethod]
 		public void TestPlayerRockComputerPaper()
 		{
-			Assert.AreEqual((winner: 1, damage: Roshambo.Roshambo.paperDamage), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.rock, Roshambo.Roshambo.RoshamboMove.paper));
+			Assert.AreEqual((winner: 1, damage: (int) Roshambo.Roshambo.RoshamboMove.paper), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.rock, Roshambo.Roshambo.RoshamboMove.paper));
 		}
 
 		[TestMethod]
 		public void TestPlayerRockComputerScissors()
 		{
-			Assert.AreEqual((winner: -1, damage: Roshambo.Roshambo.rockDamage), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.rock, Roshambo.Roshambo.RoshamboMove.scissors));
+			Assert.AreEqual((winner: -1, damage: (int) Roshambo.Roshambo.RoshamboMove.rock), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.rock, Roshambo.Roshambo.RoshamboMove.scissors));
 		}
 
 		[TestMethod]
 		public void TestPlayerPaperComputerRock()
 		{
-			Assert.AreEqual((winner: -1, damage: Roshambo.Roshambo.paperDamage), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.paper, Roshambo.Roshambo.RoshamboMove.rock));
+			Assert.AreEqual((winner: -1, damage: (int) Roshambo.Roshambo.RoshamboMove.paper), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.paper, Roshambo.Roshambo.RoshamboMove.rock));
 		}
 
 		[TestMethod]
@@ -38,19 +38,19 @@ namespace RoshamboTest
 		[TestMethod]
 		public void TestPlayerPaperComputerScissors()
 		{
-			Assert.AreEqual((winner: 1, damage: Roshambo.Roshambo.scissorsDamage), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.paper, Roshambo.Roshambo.RoshamboMove.scissors));
+			Assert.AreEqual((winner: 1, damage: (int) Roshambo.Roshambo.RoshamboMove.scissors), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.paper, Roshambo.Roshambo.RoshamboMove.scissors));
 		}
 
 		[TestMethod]
 		public void TestPlayerScissorsComputerRock()
 		{
-			Assert.AreEqual((winner: 1, damage: Roshambo.Roshambo.rockDamage), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.scissors, Roshambo.Roshambo.RoshamboMove.rock));
+			Assert.AreEqual((winner: 1, damage: (int)Roshambo.Roshambo.RoshamboMove.rock), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.scissors, Roshambo.Roshambo.RoshamboMove.rock));
 		}
 
 		[TestMethod]
 		public void TestPlayerScissorsComputerPaper()
 		{
-			Assert.AreEqual((winner: -1, damage: Roshambo.Roshambo.scissorsDamage), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.scissors, Roshambo.Roshambo.RoshamboMove.paper));
+			Assert.AreEqual((winner: -1, damage: (int) Roshambo.Roshambo.RoshamboMove.scissors), Roshambo.Roshambo.CalculateWinner(Roshambo.Roshambo.RoshamboMove.scissors, Roshambo.Roshambo.RoshamboMove.paper));
 		}
 
 		[TestMethod]
