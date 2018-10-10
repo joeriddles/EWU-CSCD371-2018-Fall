@@ -29,7 +29,7 @@ namespace Roshambo
 
 				CalculateWinner(playerMove, computerMove);
 
-				PrintHealth();
+				Console.WriteLine($"Player Health: {playerHealth}, Computer Health: {computerHealth}");
 			}
 
 			if (playerHealth <= 0 && computerHealth <= 0)
@@ -77,11 +77,6 @@ namespace Roshambo
 			}
 
 			throw new ArgumentException();
-		}
-
-		private static void PrintHealth()
-		{
-			Console.WriteLine($"Player Health: {playerHealth}, Computer Health: {computerHealth}");
 		}
 
 		public static (int winner, int damage) CalculateWinner(RoshamboMove playerMove, RoshamboMove computerMove)
