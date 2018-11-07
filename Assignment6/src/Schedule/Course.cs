@@ -5,11 +5,6 @@ using System.Linq;
 
 namespace Schedule
 {
-	public enum Days
-	{
-		Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
-	}
-
 	public class Course : IEvent
 	{
 		public string College { get; } = "EWU";
