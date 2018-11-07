@@ -1,6 +1,5 @@
-# Assignment 6
+# Assignment 6 README
 
-## Coding Excercise (due 11/06/2018)
 * Create a flags enum for the days of the week => `IEvent.cs`
 * Create an enum for the quarters (Spring, Summer, Fall, Winter) in a school year => `IEvent.cs`
 * Create a struct that will store only a Time value (hour, minute, second) => `IEvent.cs`
