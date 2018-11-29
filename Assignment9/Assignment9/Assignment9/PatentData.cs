@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Assignment9
+namespace PatentData
 {
 	public class Program
 	{

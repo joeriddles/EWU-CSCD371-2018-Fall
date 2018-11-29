@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Assignment9
+namespace PatentData
 {
 	public static class PatentDataAnalyzer
 	{
