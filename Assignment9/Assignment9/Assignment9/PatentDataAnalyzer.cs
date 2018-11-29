@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PatentData
@@ -7,6 +8,8 @@ namespace PatentData
 	{
 		public static List<string> InventorNames(string country)
 		{
+			if (country is null) throw new NullReferenceException();
+
 			return PatentData.Inventors
 				.Where(inventor => inventor.Country.Equals(country))
 				.Select(inventor => inventor.Name)
@@ -38,20 +41,11 @@ namespace PatentData
 			if (inventors.IsNullOrEmpty() || patents.IsNullOrEmpty())
 				return null;
 
-			IEnumerable<long> inventorIds = patents.SelectMany(patent => patent.InventorIds.Select(id => id));
-
-			var numPatents = inventors.Join(
-				inventorIds,
-				inventor => inventor.Id,
-				id => id,
-				(inventor, id) => inventor
-			).ToList();
-
-			Dictionary<Inventor, int> numPatentsByInventorId = new Dictionary<Inventor, int>();
-			inventors.ForEach(inventor => numPatentsByInventorId.Add(inventor, 0));
-			numPatents.ForEach(inventor => numPatentsByInventorId[inventor]++);
-
-			return numPatentsByInventorId.Where(kvp => kvp.Value >= n).Select(kvp => kvp.Key).ToList();
+			return inventors.Where(inventor =>
+			{
+				int count = patents.Count(patent => patent.InventorIds.Contains(inventor.Id));
+				return count >= n;
+			}).ToList();
 		}
 
 		private static bool IsNullOrEmpty<T>(this List<T> list)

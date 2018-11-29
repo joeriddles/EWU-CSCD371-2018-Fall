@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -9,11 +10,19 @@ namespace PatentDataAnalyzer.Tests
 	public class PatentDataAnalyzerTests
 	{
 		[TestMethod]
-		public void InventorNames_UK_Success()
+		[ExpectedException(typeof(NullReferenceException))]
+		public void InventorNames_Null_ThrowsException()
 		{
-			List<string> inventorNames = PatentData.PatentDataAnalyzer.InventorNames("UK");
+			PatentData.PatentDataAnalyzer.InventorNames(null);
+		}
+
+		[TestMethod]
+		[DataRow("UK", "George Stephenson")]
+		public void InventorNames_UK_Success(string input, string expectedOutput)
+		{
+			List<string> inventorNames = PatentData.PatentDataAnalyzer.InventorNames(input);
 			Assert.AreEqual(1, inventorNames.Count);
-			Assert.AreEqual("George Stephenson", inventorNames.Single());
+			Assert.AreEqual(expectedOutput, inventorNames.Single());
 		}
 
 		[TestMethod]
@@ -36,11 +45,14 @@ namespace PatentDataAnalyzer.Tests
 		}
 
 		[TestMethod]
-		public void GetInventorsWithMultiplePatents_ThreePatents_Success()
+		[DataRow(3, 1, 1)]
+		[DataRow(2, 1, 1)]
+		[DataRow(1, 7, 7)]
+		public void GetInventorsWithMultiplePatents_ThreePatents_Success(int input, int expectedNumInventors, long expectedLastInventorId)
 		{
-			List<Inventor> inventors = PatentData.PatentDataAnalyzer.GetInventorsWithMultiplePatents(3);
-			Assert.AreEqual(1, inventors.Count);
-			Assert.AreEqual(1, inventors.Single().Id);
+			List<Inventor> inventors = PatentData.PatentDataAnalyzer.GetInventorsWithMultiplePatents(input);
+			Assert.AreEqual(expectedNumInventors, inventors.Count);
+			Assert.AreEqual(expectedLastInventorId, inventors.Last().Id);
 		}
 	}
 }
