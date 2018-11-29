@@ -17,7 +17,7 @@ namespace PatentData
 		{
 			return PatentData.Inventors
 				.OrderByDescending(inventor => inventor.Id)
-				.Select(inventor => inventor.Name.Split()[inventor.Name.Split().Length-1])
+				.Select(inventor => inventor.Name.Split().Last())
 				.ToList();
 		}
 
