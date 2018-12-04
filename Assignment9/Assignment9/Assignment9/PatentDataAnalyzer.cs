@@ -54,5 +54,6 @@ namespace PatentData
 				return true;
 			return false;
 		}
+
 	}
 }
